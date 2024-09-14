@@ -1,9 +1,8 @@
 import axios from 'axios'
-
-const baseURL = '/login'
+const { urlApi } = require('../../config');
 
 const login = async credenciais => {
-    const response = await axios.post(baseURL, credenciais)
+    const response = await axios.post(urlApi, credenciais)
     return response.data
 }
 

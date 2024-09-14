@@ -1,16 +1,17 @@
 import axios from 'axios'
+const { urlApi } = require('../../config');
 
 const getUsuario = async token => {
     const config = {
         headers: { Authorization: `Bearer ${token}` }
     }
 
-    const response = await axios.get('/user', config)
+    const response = await axios.get(`${urlApi}user`, config)
     return response.data
 }
 
 const criarUsuario = async dados => {
-    const response = await axios.post('/users', dados)
+    const response = await axios.post(`${urlApi}users`, dados)
     return response.data
 }
 
