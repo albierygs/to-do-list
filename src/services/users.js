@@ -1,5 +1,5 @@
 import axios from 'axios'
-const { urlApi } = require('../../config');
+const { urlApi } = require('../utils/config');
 
 const getUsuario = async token => {
     const config = {
