@@ -7,11 +7,11 @@ const getUsuario = async token => {
     }
 
     const response = await axios.get(`${urlApi}user`, config)
-    return { data: response.data, status: response.status }
+    return response.data
 }
 
 const criarUsuario = async dados => {
-    const response = await axios.post(`${urlApi}users`, dados)
+    const response = await axios.post(`${urlApi}user`, dados)
     return response.data
 }
 

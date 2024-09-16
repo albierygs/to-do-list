@@ -3,6 +3,7 @@ import Principal from './Principal'
 import usersService from '../services/users'
 
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const Inicio = () => {
 
@@ -11,15 +12,13 @@ const Inicio = () => {
     useEffect(() => {
         const pegarDadosUsuario = async () => {
             const token = localStorage.getItem('toDoListToken')
+            
             if (token) {
                 try {
                     const response = await usersService.getUsuario(token)
-                    if (response.status === 200) {
-                        setUser(response.data)
-                    } else {
-                        localStorage.removeItem('toDoListToken')
-                    }
+                    setUser(response)
                 } catch (error) {
+                    localStorage.removeItem('toDoListToken')
                     console.error('Erro ao buscar os dados do usuário');
                 }
             }
@@ -30,7 +29,9 @@ const Inicio = () => {
 
     return (
         <>
-            <h1>Página Inicial</h1>
+            <Link to={'/login'}>login</Link>
+            <br />
+            <Link to={'/cadastro'}>Cadastro</Link>
             {user == null 
                 ? <BemVindo />
                 : <Principal user={user}/>
