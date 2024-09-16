@@ -7,7 +7,7 @@ const getUsuario = async token => {
     }
 
     const response = await axios.get(`${urlApi}user`, config)
-    return response.data
+    return { data: response.data, status: response.status }
 }
 
 const criarUsuario = async dados => {
