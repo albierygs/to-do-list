@@ -1,3 +1,5 @@
-const NaoEncontrado = () => <h1>Página não encontrada</h1>
+const NaoEncontrado = () => {
+    
+}
 
 export default NaoEncontrado
