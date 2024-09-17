@@ -1,7 +1,7 @@
 const FormularioLogin = ({ onSubmit, onChange, valueEmail, valuePassword }) => {
     return (
         <form onSubmit={onSubmit}>
-            <label htmlFor="email">Email:</label>
+            <label htmlFor="email">Email</label>
             <input 
                 type="email"
                 name="email" 
@@ -9,7 +9,7 @@ const FormularioLogin = ({ onSubmit, onChange, valueEmail, valuePassword }) => {
                 onChange={onChange}
                 required 
             />
-            <label htmlFor="password">Senha:</label>
+            <label htmlFor="password">Senha</label>
             <input 
                 type="password" 
                 name="password" 

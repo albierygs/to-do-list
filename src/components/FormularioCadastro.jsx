@@ -1,7 +1,7 @@
 const FormularioCadastro = ({ onSubmit, onChange, valueEmail, valuePassword, valueName }) => {
     return (
         <form onSubmit={onSubmit}>
-            <label htmlFor="name">Nome:</label>
+            <label htmlFor="name">Nome</label>
             <input 
                 type="text"
                 name="name" 
@@ -9,7 +9,7 @@ const FormularioCadastro = ({ onSubmit, onChange, valueEmail, valuePassword, val
                 onChange={onChange}
                 required 
             />
-            <label htmlFor="email">Email:</label>
+            <label htmlFor="email">Email</label>
             <input 
                 type="email"
                 name="email" 
@@ -17,7 +17,7 @@ const FormularioCadastro = ({ onSubmit, onChange, valueEmail, valuePassword, val
                 onChange={onChange}
                 required 
             />
-            <label htmlFor="password">Senha:</label>
+            <label htmlFor="password">Senha</label>
             <input 
                 type="password" 
                 name="password" 

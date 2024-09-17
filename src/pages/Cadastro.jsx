@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import FormularioCadastro from '../components/FormularioCadastro.jsx';
-import loginCadastroStyle from '../styles/loginCadastro.css'
+import style from '../styles/loginCadastro.module.css'
 
 import usersService from '../services/users.js';
 import loginService from '../services/login.js';
@@ -53,7 +53,7 @@ const Cadastro = () => {
 
     
     return (
-        <div style={loginCadastroStyle}>
+        <div className={style.form}>
             <h1>Cadastro</h1>
             <Aviso mensagem={aviso}/>
             <FormularioCadastro 

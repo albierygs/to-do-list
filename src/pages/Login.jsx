@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import FormularioLogin from "../components/FormularioLogin"
-import loginCadastroStyle from '../styles/loginCadastro.css'
+import style from '../styles/loginCadastro.module.css'
 import Aviso from '../components/Aviso'
 
 import loginService from'../services/login.js';
@@ -50,7 +50,7 @@ const Login = () => {
 
 
     return (
-        <div style={loginCadastroStyle}>
+        <div className={style.form}>
             <h1>Login</h1>
             <Aviso mensagem={aviso}/>
             <FormularioLogin 
