@@ -2,15 +2,18 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import FormularioLogin from "../components/FormularioLogin"
-import loginCadastro from '../styles/loginCadastro.css'
+import loginCadastroStyle from '../styles/loginCadastro.css'
+import Aviso from '../components/Aviso'
 
-const loginService = require('../services/login.js').default;
+import loginService from'../services/login.js';
+import lidarErro from'../utils/error'
 
 
 const Login = () => {
 
     const navigate = useNavigate()
 
+    const [ aviso, setAviso ] = useState(null)
     const [ user, setUser ] = useState({
         email: '',
         password: ''
@@ -28,7 +31,11 @@ const Login = () => {
             window.localStorage.setItem('toDoListToken', response.token)
             navigate('/')
         } catch (error) {
-            console.log(error.response.data.error);
+            const mensagemErro = await lidarErro.loginCadastro(error)
+            setAviso(mensagemErro)
+            setTimeout(() => {
+                setAviso(null)
+            }, 5000)
         }
     }
 
@@ -43,8 +50,9 @@ const Login = () => {
 
 
     return (
-        <div style={loginCadastro}>
+        <div style={loginCadastroStyle}>
             <h1>Login</h1>
+            <Aviso mensagem={aviso}/>
             <FormularioLogin 
                 onSubmit={logar} 
                 onChange={mudancaCampos} 

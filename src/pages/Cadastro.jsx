@@ -1,15 +1,19 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import FormularioCasatro from '../components/FormularioCasatro.jsx';
-import loginCadastro from '../styles/loginCadastro.css'
+import FormularioCadastro from '../components/FormularioCadastro.jsx';
+import loginCadastroStyle from '../styles/loginCadastro.css'
 
-const usersService = require('../services/users.js').default;
-const loginService = require('../services/login.js').default;
+import usersService from '../services/users.js';
+import loginService from '../services/login.js';
+import lidarErro from'../utils/error'
+import Aviso from '../components/Aviso.jsx';
+
 
 const Cadastro = () => {
 
     const navigate = useNavigate()
 
+    const [ aviso, setAviso ] = useState(null)
     const [ user, setUser ] = useState({
         email: '',
         name: '',
@@ -30,7 +34,11 @@ const Cadastro = () => {
             localStorage.setItem('toDoListToken', logar.token)
             navigate('/')
         } catch (error) {
-            console.log(error.response.data.error);
+            const mensagemErro = await lidarErro.loginCadastro(error)
+            setAviso(mensagemErro)
+            setTimeout(() => {
+                setAviso(null)
+            }, 5000)
         }
     }
 
@@ -45,9 +53,10 @@ const Cadastro = () => {
 
     
     return (
-        <div style={loginCadastro}>
+        <div style={loginCadastroStyle}>
             <h1>Cadastro</h1>
-            <FormularioCasatro 
+            <Aviso mensagem={aviso}/>
+            <FormularioCadastro 
                 onSubmit={cadastrar} 
                 onChange={mudancaCampos} 
                 valueEmail={user.email} 

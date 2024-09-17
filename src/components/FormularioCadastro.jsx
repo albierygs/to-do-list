@@ -1,4 +1,4 @@
-const FormularioCasatro = ({ onSubmit, onChange, valueEmail, valuePassword, valueName }) => {
+const FormularioCadastro = ({ onSubmit, onChange, valueEmail, valuePassword, valueName }) => {
     return (
         <form onSubmit={onSubmit}>
             <label htmlFor="name">Nome:</label>
@@ -25,9 +25,9 @@ const FormularioCasatro = ({ onSubmit, onChange, valueEmail, valuePassword, valu
                 onChange={onChange}
                 required 
             />
-            <button type="submit">Entrar</button>
+            <button type="submit">Cadastrar</button>
         </form>
     )
 }
 
-export default FormularioCasatro
+export default FormularioCadastro
