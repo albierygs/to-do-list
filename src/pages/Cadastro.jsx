@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import FormularioCasatro from '../components/FormularioCasatro.jsx';
+import loginCadastro from '../styles/loginCadastro.css'
 
 const usersService = require('../services/users.js').default;
 const loginService = require('../services/login.js').default;
@@ -44,13 +45,16 @@ const Cadastro = () => {
 
     
     return (
-        <FormularioCasatro 
-            onSubmit={cadastrar} 
-            onChange={mudancaCampos} 
-            valueEmail={user.email} 
-            valuePassword={user.password}
-            valueName={user.name}
-        />
+        <div style={loginCadastro}>
+            <h1>Cadastro</h1>
+            <FormularioCasatro 
+                onSubmit={cadastrar} 
+                onChange={mudancaCampos} 
+                valueEmail={user.email} 
+                valuePassword={user.password}
+                valueName={user.name}
+            />
+        </div>
     )
 }
 
