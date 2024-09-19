@@ -51,14 +51,16 @@ const Login = () => {
 
     return (
         <div className={style.form}>
-            <h1>Login</h1>
-            <Aviso mensagem={aviso}/>
-            <FormularioLogin 
-                onSubmit={logar} 
-                onChange={mudancaCampos} 
-                valueEmail={user.email} 
-                valuePassword={user.password}
-            />
+            <div>
+                <h1>Login</h1>
+                <Aviso mensagem={aviso}/>
+                <FormularioLogin
+                    onSubmit={logar} 
+                    onChange={mudancaCampos} 
+                    valueEmail={user.email} 
+                    valuePassword={user.password}
+                />
+            </div>
         </div>
     )
 }

@@ -1,12 +1,14 @@
+import style from '../styles/loginCadastro.module.css'
+
 const Aviso = ({ mensagem }) => {
     if (mensagem === null) {
       return null
     }
   
     return (
-      <div className='error'>
+      <p className={style.aviso}>
         {mensagem}
-      </div>
+      </p>
     )
 }
 

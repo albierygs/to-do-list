@@ -54,15 +54,17 @@ const Cadastro = () => {
     
     return (
         <div className={style.form}>
-            <h1>Cadastro</h1>
-            <Aviso mensagem={aviso}/>
-            <FormularioCadastro 
-                onSubmit={cadastrar} 
-                onChange={mudancaCampos} 
-                valueEmail={user.email} 
-                valuePassword={user.password}
-                valueName={user.name}
-            />
+            <div>
+                <h1>Cadastro</h1>
+                <Aviso mensagem={aviso}/>
+                <FormularioCadastro 
+                    onSubmit={cadastrar} 
+                    onChange={mudancaCampos} 
+                    valueEmail={user.email} 
+                    valuePassword={user.password}
+                    valueName={user.name}
+                />
+            </div>
         </div>
     )
 }

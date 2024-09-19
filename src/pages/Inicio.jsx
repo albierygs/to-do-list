@@ -1,9 +1,10 @@
+import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+
+
 import BemVindo from './Bemvindo'
 import Principal from './Principal'
 import usersService from '../services/users'
-
-import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
 
 const Inicio = () => {
 
