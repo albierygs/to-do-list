@@ -23,7 +23,7 @@ const Login = () => {
         event.preventDefault()
 
         try {
-            const response = await loginService.login({
+            const response = await loginService({
                 email: user.email,
                 password: user.password 
             })

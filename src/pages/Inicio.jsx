@@ -16,7 +16,7 @@ const Inicio = () => {
             
             if (token) {
                 try {
-                    const response = await usersService.getUsuario(token)
+                    const response = await usersService.carregarUsuario(token)
                     setUser(response)
                 } catch (error) {
                     localStorage.removeItem('toDoListToken')

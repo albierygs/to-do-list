@@ -26,7 +26,7 @@ const Cadastro = () => {
         try {
             await usersService.criarUsuario(user)
 
-            const logar = await loginService.login({
+            const logar = await loginService({
                 email: user.email,
                 password: user.password 
             })
