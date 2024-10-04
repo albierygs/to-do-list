@@ -9,7 +9,6 @@ import usersService from '../services/users'
 const Inicio = () => {
 
     const [ user, setUser ] = useState(null)
-    const [ token, setToken ] = useState(null)
 
     useEffect(() => {
         const pegarDadosUsuario = async () => {
@@ -19,11 +18,10 @@ const Inicio = () => {
                 try {
                     const response = await usersService.carregarUsuario(token)
                     setUser(response)
-                    setToken(token)
                 } catch (error) {
                     localStorage.removeItem('toDoListToken')
+                    localStorage.removeItem('tasksUser')
                     setUser(null)
-                    setToken(null)
                     console.error('Erro ao buscar os dados do usuário');
                 }
             }
@@ -39,7 +37,7 @@ const Inicio = () => {
             <Link to={'/cadastro'}>Cadastro</Link>
             {user == null 
                 ? <BemVindo />
-                : <Principal user={user} token={token}/>
+                : <Principal user={user}/>
             }
         </>
     )
