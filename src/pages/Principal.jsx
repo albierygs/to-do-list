@@ -12,10 +12,14 @@ const Principal = ({ user }) => {
             if (tasksStorage) {
                 setTarefas(JSON.parse(tasksStorage))
             } else {
-                const token = localStorage.getItem('toDoListToken')
-                const tarefas = await tasksService.carregarTarefasUsuario(token)
-                setTarefas(tarefas)
-                localStorage.setItem('tasksUser', JSON.stringify(tarefas))
+                try {
+                    const token = localStorage.getItem('toDoListToken')
+                    const tarefas = await tasksService.carregarTarefasUsuario(token)
+                    setTarefas(tarefas)
+                    localStorage.setItem('tasksUser', JSON.stringify(tarefas))
+                } catch (error) {
+                    console.error('Erro ao buscar tarefas', error);                    
+                }
             }
         }
         carregarTarefasUsuario()
