@@ -7,40 +7,40 @@ import Principal from './Principal'
 import usersService from '../services/users'
 
 const Inicio = () => {
-
-    const [ user, setUser ] = useState(null)
-
-    useEffect(() => {
-        const pegarDadosUsuario = async () => {
-            const token = localStorage.getItem('toDoListToken')
-            
-            if (token) {
-                try {
-                    const response = await usersService.carregarUsuario(token)
-                    setUser(response)
-                } catch (error) {
-                    localStorage.removeItem('toDoListToken')
-                    localStorage.removeItem('tasksUser')
-                    setUser(null)
-                    console.error('Erro ao buscar os dados do usuário');
-                }
-            }
+  
+  const [ user, setUser ] = useState(null)
+  
+  useEffect(() => {
+    const pegarDadosUsuario = async () => {
+      const token = localStorage.getItem('toDoListToken')
+      
+      if (token) {
+        try {
+          const response = await usersService.carregarUsuario(token)
+          setUser(response)
+        } catch (error) {
+          localStorage.removeItem('toDoListToken')
+          localStorage.removeItem('tasksUser')
+          setUser(null)
+          console.error('Erro ao buscar os dados do usuário');
         }
-        pegarDadosUsuario()
-    }, [])
-
-
-    return (
-        <>
-            <Link to={'/login'}>login</Link>
-            <br />
-            <Link to={'/cadastro'}>Cadastro</Link>
-            {user == null 
-                ? <BemVindo />
-                : <Principal user={user}/>
-            }
-        </>
-    )
+      }
+    }
+    pegarDadosUsuario()
+  }, [])
+  
+  
+  return (
+    <>
+      <Link to={'/login'}>login</Link>
+      <br />
+      <Link to={'/cadastro'}>Cadastro</Link>
+      {user == null 
+        ? <BemVindo />
+        : <Principal user={user}/>
+      }
+    </>
+  )
 }
 
 export default Inicio
