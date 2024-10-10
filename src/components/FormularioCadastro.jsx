@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useState } from 'react'
 
 
 const registerUserFormSchema = z.object({
@@ -21,6 +22,12 @@ const registerUserFormSchema = z.object({
 
 
 const FormularioCadastro = ({ onSubmit }) => {
+
+	const [ emailError, setEmailError ] = useState(null)
+
+	setTimeout(() => {
+		setEmailError(null)
+	}, 5000)
 	
 	const { 
 		register, 
@@ -31,41 +38,51 @@ const FormularioCadastro = ({ onSubmit }) => {
 	})
 	
 	const submit = async dados => {
-		await onSubmit({
-			name: dados.name,
-			email: dados.email,
-			password: dados.password
-		})
+		try {
+			await onSubmit({
+				name: dados.name,
+				email: dados.email,
+				password: dados.password
+			})
+			setEmailError(null)
+		} catch ({ response }) {
+			if (response.data.error.includes('to be unique')) {
+				setEmailError('E-mail já cadastrado')
+			}
+		}
 	}
 	
 	
 	return (
-		<form onSubmit={handleSubmit(submit)}>
-		
-			<label htmlFor="name">Nome</label>
-			<input 
-				type="text"
-				{...register('name')}
-			/>
-			{errors.name && <span className='avisoErro'>{errors.name.message}</span>}
+		<>
+			{emailError && <span className='avisoErro'>{emailError}</span>}
+			<form onSubmit={handleSubmit(submit)}>
 			
-			<label htmlFor="email">Email</label>
-			<input 
-				type="email"
-				{...register('email')}
-			/>
-			{errors.email && <span className='avisoErro'>{errors.email.message}</span>}
+				<label htmlFor="name">Nome</label>
+				<input 
+					type="text"
+					{...register('name')}
+				/>
+				{errors.name && <span className='avisoErro'>{errors.name.message}</span>}
+				
+				<label htmlFor="email">Email</label>
+				<input 
+					type="email"
+					{...register('email')}
+				/>
+				{errors.email && <span className='avisoErro'>{errors.email.message}</span>}
+
+				<label htmlFor="password">Senha</label>
+				<input 
+					type="password" 
+					{...register('password')}
+				/>
+				{errors.password && <span className='avisoErro'>{errors.password.message}</span>}
+				
+				<button type="submit">Cadastrar</button>
 			
-			<label htmlFor="password">Senha</label>
-			<input 
-				type="password" 
-				{...register('password')}
-			/>
-			{errors.password && <span className='avisoErro'>{errors.password.message}</span>}
-			
-			<button type="submit">Cadastrar</button>
-		
-		</form>
+			</form>
+		</>
 	)
 }
 

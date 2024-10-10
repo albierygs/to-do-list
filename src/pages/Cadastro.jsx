@@ -11,9 +11,9 @@ const Cadastro = () => {
 	const navigate = useNavigate()
 	
 	const cadastrar = async dados => {		
+		await usersService.criarUsuario(dados)
+		
 		try {
-			await usersService.criarUsuario(dados)
-			
 			const response = await loginService({
 				email: dados.email,
 				password: dados.password 

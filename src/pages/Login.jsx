@@ -11,13 +11,9 @@ const Login = () => {
 	const navigate = useNavigate()
 	
 	const logar = async dados => {
-		try {
-			const response = await loginService(dados)					
-			window.localStorage.setItem('toDoListToken', response.token)
-			navigate('/')
-		} catch (error) {
-			console.log(error);
-		}
+		const response = await loginService(dados)					
+		window.localStorage.setItem('toDoListToken', response.token)
+		navigate('/')
 	}
 	
 	

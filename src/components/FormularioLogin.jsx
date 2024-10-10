@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useState } from 'react'
 
 
 const loginUserFormSchema = z.object({
@@ -13,6 +14,12 @@ const loginUserFormSchema = z.object({
 })
 
 const FormularioLogin = ({ onSubmit }) => {
+
+	const [ credenciaisError, setCredenciaisError ] = useState(null)
+
+	setTimeout(() => {
+		setCredenciaisError(null)
+	}, 5000)
 	
 	const { 
 		register, 
@@ -23,32 +30,42 @@ const FormularioLogin = ({ onSubmit }) => {
 	})
 	
 	const submit = async dados => {
-		await onSubmit({
-			email: dados.email,
-			password: dados.password
-		})
+		try {
+			await onSubmit({
+				email: dados.email,
+				password: dados.password
+			})
+			setCredenciaisError(null)
+		} catch ({ response }) {
+			if (response.data.error === 'email inválido' || response.data.error === 'senha inválida') {
+				setCredenciaisError('E-mail ou senha incorretos')
+			}
+		}
 	}
 	
 	return (
-		<form onSubmit={handleSubmit(submit)}>
+		<>
+			{credenciaisError && <span className='avisoErro'>{credenciaisError}</span>}
+			<form onSubmit={handleSubmit(submit)}>
 
-			<label htmlFor="email">E-mail</label>
-			<input 
-				type="email"
-				{...register('email')}
-			/>
-			{errors.email && <span className='avisoErro'>{errors.email.message}</span>}
+				<label htmlFor="email">E-mail</label>
+				<input 
+					type="email"
+					{...register('email')}
+				/>
+				{errors.email && <span className='avisoErro'>{errors.email.message}</span>}
 
-			<label htmlFor="password">Senha</label>
-			<input 
-				type="password" 
-				{...register('password')}
-			/>
-			{errors.password && <span className='avisoErro'>{errors.password.message}</span>}
+				<label htmlFor="password">Senha</label>
+				<input 
+					type="password" 
+					{...register('password')}
+				/>
+				{errors.password && <span className='avisoErro'>{errors.password.message}</span>}
 
-			<button type="submit">Entrar</button>
+				<button type="submit">Entrar</button>
 
-		</form>
+			</form>
+		</>
 	)
 }
 
