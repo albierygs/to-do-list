@@ -1,8 +1,16 @@
 import style from '../../styles/loginCadastro.module.css'
+import { TriangleAlert } from 'lucide-react'
 
-const MensagemErro = ({ mensagem }) => {
+const MensagemErro = ({ mensagem, tipo = 'padrao' }) => {
   return (
-    <span className={style.erro}>{mensagem}</span>
+    <>
+      {tipo === 'popup' 
+        ? <div className={style.divErroPopup}>
+            <span><TriangleAlert size={20} /> {mensagem}</span>
+          </div>
+        : <span className={style.erro}>{mensagem}</span> 
+      }
+    </>
   )
 }
 

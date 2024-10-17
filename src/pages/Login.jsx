@@ -1,11 +1,12 @@
 import { useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react';
+
 
 import Form from "../components/Form/Login/Formulario.jsx"
 import Title from '../components/Form/Title.jsx';
 import style from '../styles/loginCadastro.module.css'
 
 import loginService from'../services/login.js';
-import { useState } from 'react';
 import MensagemErro from '../components/Form/MensagemErro.jsx';
 import Footer from '../components/Form/Footer.jsx';
 
@@ -15,6 +16,11 @@ const Login = () => {
 	const navigate = useNavigate()
 
 	const [ credenciaisError, setCredenciaisError ] = useState(null)
+
+
+	useEffect(() => {
+		document.title = 'Login'
+	}, [])
 	
 
 	/**
@@ -38,16 +44,16 @@ const Login = () => {
 				setCredenciaisError('E-mail ou senha incorretos')
 				setTimeout(() => {
 					setCredenciaisError(null)
-				}, 5000)
+				}, 10000)
 			}
 		}
 	}
 	
 	
 	return (
-		<main className={style.form}>
-			<div>
-				{credenciaisError && <MensagemErro mensagem={credenciaisError} />}
+		<main>
+			{credenciaisError && <MensagemErro mensagem={credenciaisError} tipo='popup' />}
+			<div className={style.loginBox}>
 				<Title texto='Login' />
 				<Form 
 					onSubmit={logar} 

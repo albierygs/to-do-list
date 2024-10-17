@@ -3,10 +3,9 @@
   margin-bottom: 20px;
 }
 
-.form input {
+.input {
   width: 100%;
   padding: 10px;
-  margin-bottom: 15px;
   border-radius: 10px;
   border: none;
   outline: none;
@@ -15,11 +14,7 @@
   font-size: 16px;
 }
 
-.form input::placeholder {
-  color: #ccc;
-}
-
-.form button {
+.button {
   width: 100%;
   padding: 12px;
   background-color: #007BFF;
@@ -31,12 +26,11 @@
   box-shadow: 0 0 15px rgba(0, 123, 255, 0.7); 
 }
 
-.form button:hover {
+.button:hover {
   background-color: #0056b3;
 }
 
-
-.form div{
+.cadastroBox{
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px); 
   padding: 40px;
@@ -45,18 +39,84 @@
   text-align: center;
   color: #fff;
   width: 350px;
-  height: 400px; 
+  height: 520px; 
   flex-direction: column;
   justify-content: center;
 }
 
+.loginBox{
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px); 
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  color: #fff;
+  width: 350px;
+  height: 420px; 
+  flex-direction: column;
+  justify-content: center;
+}
+
+.divErro {
+  min-height: 40px;
+}
+
 .erro {
-  display: flex;
   color: rgb(255, 0, 0);
   align-items: center;
   justify-content: center;
 }
 
+.divErroPopup {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 40px;
+  width: 350px;
+  height: 50px;
+  border-radius: 15px;
+  background-color: rgba(255, 255, 255, 0.614);
+  border: 2px solid red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: red;
+  font-size: 20px;
+}
+
+.footer {
+  left: 0;
+  position: absolute;
+  margin-top: 40px;
+  width: 100%;
+  font-size: 16px;
+}
+
 .footer a {
   color: #007BFF;
+}
+
+.containerSenha {
+  position: relative;
+}
+
+.inputSenha {
+  width: 100%;
+  padding: 10px 45px 10px 10px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-size: 16px;
+}
+
+.iconeSenha {
+  position: absolute;
+  right: 10px;
+  top: 55%;
+  transform: translateY(-50%);
+  cursor: pointer;
 }

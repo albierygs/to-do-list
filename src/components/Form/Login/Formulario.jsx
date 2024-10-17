@@ -3,6 +3,9 @@ import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import PropTypes from 'prop-types'
 import MensagemErro from '../MensagemErro'
+import { useState } from 'react'
+import { Eye, EyeClosed } from 'lucide-react'
+import style from '../../../styles/loginCadastro.module.css'
 
 
 const loginUserFormSchema = z.object({
@@ -16,6 +19,8 @@ const loginUserFormSchema = z.object({
 })
 
 const Formulario = ({ onSubmit }) => {
+
+	const [ showPassword, setShowPassword ] = useState(false)
 	
 	const { 
 		register, 
@@ -25,25 +30,46 @@ const Formulario = ({ onSubmit }) => {
 		resolver: zodResolver(loginUserFormSchema)
 	})
 
+
+	const mudarVisibilidadeSenha = () => {
+		setShowPassword(!showPassword)
+	}
+
 	
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
 
-			<label htmlFor="email">E-mail</label>
-			<input 
-				type="email"
-				{...register('email')}
-			/>
-			{errors.email && <MensagemErro mensagem={errors.email.message} />}
+			<div className={style.containerCampos}>
+				<label htmlFor="email">E-mail</label>
+				<input 
+					className={style.input}
+					type="email"
+					{...register('email')}
+				/>
+				<div className={style.divErro}>
+					{errors.email && <MensagemErro mensagem={errors.email.message} />}
+				</div>
+			</div>
 
-			<label htmlFor="password">Senha</label>
-			<input 
-				type="password" 
-				{...register('password')}
-			/>
-			{errors.password && <MensagemErro mensagem={errors.password.message} />}
+			<div className={style.containerCampos}>
+				<label htmlFor="password">Senha</label>
+				<div className={style.containerSenha}>
+					<input 
+						className={style.inputSenha}
+						type={showPassword ? 'text' : 'password'} 
+						{...register('password')}
+					/>
+					<span className={style.iconeSenha} >{showPassword 
+						? <Eye  onClick={mudarVisibilidadeSenha}/>
+						: <EyeClosed onClick={mudarVisibilidadeSenha}/>}
+					</span>
+				</div>
+				<div className={style.divErro}>
+					{errors.password && <MensagemErro mensagem={errors.password.message} />}
+				</div>
+			</div>
 
-			<button type="submit">Entrar</button>
+			<button type="submit" className={style.button}>Entrar</button>
 
 		</form>
 	)

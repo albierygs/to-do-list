@@ -3,6 +3,9 @@ import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import PropTypes from 'prop-types'
 import MensagemErro from '../MensagemErro'
+import { useState } from 'react'
+import { Eye, EyeClosed } from 'lucide-react'
+import style from '../../../styles/loginCadastro.module.css'
 
 
 const registerUserFormSchema = z.object({
@@ -30,6 +33,8 @@ const registerUserFormSchema = z.object({
 
 
 const Formulario = ({ onSubmit }) => {
+
+	const [ showPassword, setShowPassword ] = useState(false)
 	
 	const { 
 		register, 
@@ -39,33 +44,53 @@ const Formulario = ({ onSubmit }) => {
 		resolver: zodResolver(registerUserFormSchema)
 	})
 
+
+	const mudarVisibilidadeSenha = () => {
+		setShowPassword(!showPassword)
+	}
+
 	
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
 		
 			<label htmlFor="name">Nome</label>
 			<input 
+				className={style.input}
 				type="text"
 				{...register('name')}
 			/>
-			{errors.name && <MensagemErro mensagem={errors.name.message} />}
+			<div className={style.divErro}>
+				{errors.name && <MensagemErro mensagem={errors.name.message} />}
+			</div>
 			
 			<label htmlFor="email">Email</label>
 			<input 
+				className={style.input}
 				type="email"
 				{...register('email')}
 			/>
-			{errors.email && <MensagemErro mensagem={errors.email.message} />}
+			<div className={style.divErro}>
+				{errors.email && <MensagemErro mensagem={errors.email.message} />}
+			</div>
 
 			<label htmlFor="password">Senha</label>
-			<input 
-				type="password" 
-				placeholder='No mínimo 6 caracteres'
-				{...register('password')}
-			/>
-			{errors.password && <MensagemErro mensagem={errors.password.message} />}
+			<div className={style.containerSenha}>
+				<input 
+					className={style.inputSenha}
+					type={showPassword ? 'text' : 'password'}
+					placeholder='No mínimo 6 caracteres'
+					{...register('password')}
+				/>
+				<span className={style.iconeSenha} >{showPassword 
+					? <Eye  onClick={mudarVisibilidadeSenha}/> 
+					: <EyeClosed onClick={mudarVisibilidadeSenha}/>}
+				</span>
+			</div>
+			<div className={style.divErro}>
+				{errors.password && <MensagemErro mensagem={errors.password.message} />}
+			</div>
 			
-			<button type="submit">Cadastrar</button>
+			<button type="submit" className={style.button}>Cadastrar</button>
 		
 		</form>
 	)

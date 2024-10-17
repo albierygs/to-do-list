@@ -4,7 +4,7 @@ import style from '../styles/loginCadastro.module.css'
 
 import usersService from '../services/users.js';
 import loginService from '../services/login.js';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Title from '../components/Form/Title.jsx';
 import MensagemErro from '../components/Form/MensagemErro.jsx';
 import Footer from '../components/Form/Footer.jsx';
@@ -15,6 +15,11 @@ const Cadastro = () => {
 	const navigate = useNavigate()
 	
 	const [ emailError, setEmailError ] = useState(null)
+
+
+	useEffect(() => {
+		document.title = 'Cadastro'
+	}, [])
 
 
 	/**
@@ -37,7 +42,7 @@ const Cadastro = () => {
 				setEmailError('E-mail já cadastrado')
 				setTimeout(() => {
 					setEmailError(null)
-				}, 5000)
+				}, 10000)
 			}
 		}
 		
@@ -56,9 +61,9 @@ const Cadastro = () => {
 	
 	
 	return (
-		<main className={style.form}>
-			<div>
-				{emailError && <MensagemErro mensagem={emailError} />}
+		<main>
+			{emailError && <MensagemErro mensagem={emailError} tipo='popup' />}
+			<div className={style.cadastroBox}>
 				<Title texto='Cadastro' />
 				<Form onSubmit={cadastrar} />
 				<Footer tela='cadastro'/>

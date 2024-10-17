@@ -17,6 +17,8 @@ Este projeto é uma aplicação **ToDo List** desenvolvida em React, onde os usu
 - **Axios**: Cliente HTTP usado para fazer requisições para uma API REST.
 - **React Router**: Para gerenciamento de rotas e navegação entre páginas.
 - **CSS Modules**: Estilização dos componentes.
+- **Zod**: Biblioteca para validação e transformação de dados.
+- **Lucide-React**: Biblioteca com ícones SVG personalizados.
 
 ## Como Rodar o Projeto
 
