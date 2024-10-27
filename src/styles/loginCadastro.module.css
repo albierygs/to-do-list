@@ -30,6 +30,11 @@
   background-color: #0056b3;
 }
 
+.button:disabled {
+  background-color: #1962b1c4;
+  cursor: not-allowed;
+}
+
 .cadastroBox{
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px); 

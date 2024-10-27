@@ -39,9 +39,10 @@ const Formulario = ({ onSubmit }) => {
 	const { 
 		register, 
 		handleSubmit, 
-		formState: { errors } 
+		formState: { errors, isSubmitting }
 	} = useForm({
-		resolver: zodResolver(registerUserFormSchema)
+		resolver: zodResolver(registerUserFormSchema),
+		mode: 'all'
 	})
 
 
@@ -55,6 +56,7 @@ const Formulario = ({ onSubmit }) => {
 		
 			<label htmlFor="name">Nome</label>
 			<input 
+				autoFocus
 				className={style.input}
 				type="text"
 				{...register('name')}
@@ -90,7 +92,9 @@ const Formulario = ({ onSubmit }) => {
 				{errors.password && <MensagemErro mensagem={errors.password.message} />}
 			</div>
 			
-			<button type="submit" className={style.button}>Cadastrar</button>
+			<button type="submit" className={style.button} disabled={isSubmitting}>
+				{isSubmitting ? 'Aguarde...' : 'Cadastrar'}
+			</button>
 		
 		</form>
 	)
