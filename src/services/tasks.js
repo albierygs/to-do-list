@@ -4,23 +4,21 @@ const { urlApi } = require('../utils/config');
 
 /**
  * Formata o objeto de autorização para a requisição 
- * @param {string} token - O token de autorização
  * @returns {Object}
  */
-const autorizacao = token => {
+const autorizacao = () => {
   return {
-    headers: { Authorization: `Bearer ${token}` }
+    headers: { Authorization: `Bearer ${localStorage.getItem('toDoListToken')}` }
   }
 }
 
 
 /**
  * Pega todas as tarefas de um usuário
- * @param {string} token - O token de autorização
  * @returns {Object} As tarefas
  */
-const carregarTarefasUsuario = async token => {
-  const config = autorizacao(token)
+const carregarTarefasUsuario = async () => {
+  const config = autorizacao()
   
   const response = await axios.get(`${urlApi}tasks`, config)
   return response.data
@@ -38,11 +36,10 @@ const carregarTarefasUsuario = async token => {
 /**
  * Salva a tarefa
  * @param {Tarefa} tarefa - Os dados da tarefa a ser criada
- * @param {string} token - O token de autorização
  * @returns {Object} A tarefa salva
  */
-const criarTarefa = async (tarefa, token) => {
-  const config = autorizacao(token)
+const criarTarefa = async (tarefa) => {
+  const config = autorizacao()
   
   const response = await axios.post(`${urlApi}tasks`, tarefa, config)
   return response.data
@@ -60,12 +57,11 @@ const criarTarefa = async (tarefa, token) => {
 /**
  * Atualiza uma tarefa existente
  * @param {Tarefa} novaTarefa - A nova tarefa
- * @param {string} token - O token de autorização
  * @param {string} id - O ID da tarefa que será atualizada
  * @returns {Object}
  */
-const atualizarTarefa = async (novaTarefa, token, id) => {
-  const config = autorizacao(token)
+const atualizarTarefa = async (novaTarefa, id) => {
+  const config = autorizacao()
   
   const response = await axios.put(`${urlApi}tasks/${id}`, novaTarefa, config)
   return response.data
@@ -74,12 +70,11 @@ const atualizarTarefa = async (novaTarefa, token, id) => {
 
 /**
  * Excluí uma tarefa existente 
- * @param {string} token - O token de autorização
  * @param {string} id - O ID da tarefa que será excluída
  * @returns {number} O código HTTP da requisição
  */
-const excluirTarefa = async (token, id) => {
-  const config = autorizacao(token)
+const excluirTarefa = async (id) => {
+  const config = autorizacao()
   
   const response = await axios.delete(`${urlApi}tasks/${id}`, config)
   return response.status

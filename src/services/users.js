@@ -4,23 +4,21 @@ const { urlApi } = require('../utils/config');
 
 /**
  * Formata o objeto de autorização para a requisição 
- * @param {string} token - O token de autorização
  * @returns {Object}
  */
-const autorizacao = token => {
+const autorizacao = () => {
   return {
-    headers: { Authorization: `Bearer ${token}` }
+    headers: { Authorization: `Bearer ${localStorage.getItem('toDoListToken')}` }
   }
 }
 
 
 /**
  * Pega as informações de um usuário
- * @param {string} token - O token de autorização
  * @returns {Object}
  */
-const carregarUsuario = async token => {
-  const config = autorizacao(token)
+const carregarUsuario = async () => {
+  const config = autorizacao()
   
   const response = await axios.get(`${urlApi}users`, config)
   return response.data
@@ -51,8 +49,8 @@ const criarUsuario = async dados => {
  * @param {string} id - O ID do usuário
  * @returns {Object}
  */
-const atualizarUsuario = async (novoUsuario, token, id) => {
-  const config = autorizacao(token)
+const atualizarUsuario = async (novoUsuario, id) => {
+  const config = autorizacao()
   
   const response = await axios.put(`${urlApi}users/${id}`, novoUsuario, config)
   return response.data
@@ -65,8 +63,8 @@ const atualizarUsuario = async (novoUsuario, token, id) => {
  * @param {string} id - O ID do usuário
  * @returns {number} O código HTTP da requisição
  */
-const excluirUsuario = async (token, id) => {
-  const config = autorizacao(token)
+const excluirUsuario = async (id) => {
+  const config = autorizacao()
   
   const response = await axios.delete(`${urlApi}users/${id}`, config)
   return response.status
