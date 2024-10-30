@@ -1,0 +1,166 @@
+.barraLateral {
+  width: 250px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav {
+  width: 100%;
+}
+
+.listNavegacao, .menuSuspenso {
+  list-style-type: none;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.itemNav {
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 3px;
+  width: 100%;
+  text-align: left;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+  transition: background 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+}
+
+.itemNav:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+.itemNavSelecionado {
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 3px;
+  width: 100%;
+  text-align: left;
+  background-color: #2a59d1;
+  color: #fff;
+}
+
+.botaoPerfil {
+  border-radius: 15px;
+  margin-bottom: 20px;
+  width: 70%;
+  background: linear-gradient(45deg, #bb91fa, #367ce5);
+  padding: 10px;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.botaoPerfil:hover {
+  background: linear-gradient(45deg, #ACB6E5, #74ebd5);
+}
+
+.botaoMenuSuspenso {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.divTarefa {
+  margin-top: 10px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  color: #fff;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 800px;
+  margin: 10px auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.divTarefa, .divPerfil {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.iconesTarefa {
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.iconesTarefa:hover {
+  color: #bb91fa;
+}
+
+.botaoAdicionar {
+  margin-top: auto;
+  margin-bottom: 20px;
+  animation: none;
+}
+
+.botaoAdicionar:active {
+  animation: clickEffect 0.3s;
+}
+
+@keyframes clickEffect {
+  0% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  50% {
+    transform: scale(1.1);
+    filter: brightness(1.5);
+  }
+  100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+}
+
+.main {
+  margin-left: 300px;
+  padding: 20px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.titulo {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.data {
+  font-size: 16px;
+}
+
+button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 20px;
+  background: linear-gradient(45deg, #bb91fa, #367ce5);
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+  background: linear-gradient(45deg, #ACB6E5, #74ebd5);
+  transform: scale(1.05);
+}

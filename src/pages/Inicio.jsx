@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
 
 
 import BemVindo from './Bemvindo'
@@ -24,6 +23,8 @@ const Inicio = () => {
           setUser(null)
           console.error('Erro ao buscar os dados do usuário');
         }
+      } else {
+        setUser(null)
       }
     }
     pegarDadosUsuario()
@@ -32,9 +33,6 @@ const Inicio = () => {
   
   return (
     <>
-      <Link to={'/login'}>login</Link>
-      <br />
-      <Link to={'/cadastro'}>Cadastro</Link>
       {user == null 
         ? <BemVindo />
         : <Principal user={user}/>

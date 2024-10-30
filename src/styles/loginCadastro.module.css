@@ -15,15 +15,14 @@
 }
 
 .button {
-  width: 100%;
-  padding: 12px;
-  background-color: #007BFF;
+  background-color: #1e047b00;
   border: none;
-  border-radius: 10px;
-  color: #fff;
+  padding: 15px 20px;
+  border-radius: 25px;
   font-size: 16px;
+  color: #1e047b;
   cursor: pointer;
-  box-shadow: 0 0 15px rgba(0, 123, 255, 0.7); 
+  width: 100%;
 }
 
 .button:hover {

@@ -1,0 +1,76 @@
+.titulo {
+  color: #fff;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.container {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 30px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  max-width: 400px;
+  width: 100%;
+  margin: auto;
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-size: 16px;
+  backdrop-filter: blur(5px);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input:focus {
+  background: rgba(255, 255, 255, 0.3); 
+  box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.2); 
+}
+
+.botao {
+  background: linear-gradient(45deg, #bb91fa, #367ce5);
+  border: none;
+  padding: 15px 20px;
+  border-radius: 25px;
+  font-size: 16px;
+  color: #1e047b;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.botaoCancelar {
+  background-color: #1a007800;
+  border: none;
+  padding: 15px 20px;
+  text-align: center;
+  border-radius: 25px;
+  font-size: 16px;
+  color: #1e047b;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.botao:hover {
+  background: linear-gradient(45deg, #ACB6E5, #74ebd5);
+  transform: scale(1.05);
+}
+
+.botaoCancelar:hover {
+  background: linear-gradient(45deg, #ACB6E5, #74ebd513);
+  transform: scale(1.00);
+}
+
+.botao:focus {
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}

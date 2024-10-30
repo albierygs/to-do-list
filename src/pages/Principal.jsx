@@ -1,9 +1,15 @@
 import { useEffect, useState } from "react"
+import { isSameDay, isPast, isFuture, format } from 'date-fns'
 import tasksService from '../services/tasks'
+import style from '../styles/principal.module.css'
+import Profile from "../components/Principal/Profile"
+import ItemNavegacao from "../components/Principal/ItemNavegacao"
+import PainelTarefas from "../components/Principal/PainelTarefas"
 
 const Principal = ({ user }) => {
 	
-	const [ tarefas, setTarefas ] = useState(null)
+	const [ tarefas, setTarefas ] = useState([])
+	const [ selecionadoNav, setSelecionadoNav ] = useState('Hoje')
 	
 	useEffect(() => {
 		const carregarTarefasUsuario = async () => {
@@ -24,9 +30,80 @@ const Principal = ({ user }) => {
 		}
 		carregarTarefasUsuario()
 	}, [])
+
+	const filtrarTarefas = () => {
+		const hoje = format(new Date(), 'dd/MM/yyyy')
+
+		tarefas.map(t => console.log(format(t.date, 'dd/MM/yyyy'), hoje))
+
+		if (selecionadoNav === 'Hoje') {
+			return tarefas.filter(tarefa => format(tarefa.date, 'dd/MM/yyyy') === hoje)
+		} else if (selecionadoNav === 'Em breve') {
+			return tarefas.filter(tarefa =>  isFuture(tarefa.date))
+		} else if (selecionadoNav === 'Importantes') {
+			return tarefas.filter(tarefa => tarefa.important)
+		} else if (selecionadoNav === 'Concluídas') {
+			return tarefas.filter(tarefa => tarefa.done)
+		} else if (selecionadoNav === 'Atrasadas') {
+			return tarefas.filter(tarefa => isPast(tarefa.date) && !tarefa.done)
+		} else if (selecionadoNav === 'Pendentes') {
+			return tarefas.filter(tarefa => !tarefa.done)
+		}
+
+		return tarefas
+	}
 	
 	return (
-		<h1>Aplicação</h1>
+		<>
+			<aside className={style.barraLateral}>
+				<Profile nomeUsuario={user.name} />
+				<nav className={style.nav}>
+					<ul className={style.listNavegacao}>
+						<ItemNavegacao 
+							titulo='Hoje' 
+							selecionado={selecionadoNav} 
+							setSelecionado={setSelecionadoNav} 
+						/>
+						<ItemNavegacao 
+							titulo='Em breve' 
+							selecionado={selecionadoNav} 
+							setSelecionado={setSelecionadoNav} 
+						/>
+						<ItemNavegacao 
+							titulo='Concluídas' 
+							selecionado={selecionadoNav} 
+							setSelecionado={setSelecionadoNav} 
+						/>
+						<ItemNavegacao 
+							titulo='Atrasadas' 
+							selecionado={selecionadoNav} 
+							setSelecionado={setSelecionadoNav} 
+						/>
+						<ItemNavegacao 
+							titulo='Pendentes' 
+							selecionado={selecionadoNav} 
+							setSelecionado={setSelecionadoNav} 
+						/>
+						<ItemNavegacao 
+							titulo='Importantes' 
+							selecionado={selecionadoNav} 
+							setSelecionado={setSelecionadoNav} 
+						/>
+						<ItemNavegacao 
+							titulo='Todas' 
+							selecionado={selecionadoNav} 
+							setSelecionado={setSelecionadoNav} 
+						/>
+					</ul>
+				</nav>
+			</aside>
+			<PainelTarefas 
+				tarefasFiltradas={filtrarTarefas()} 
+				titulo={selecionadoNav} 
+				tarefas={tarefas}
+				setTarefas={setTarefas}
+			/>
+		</>
 	)
 }
 
