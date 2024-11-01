@@ -25,6 +25,9 @@
 }
 
 .itemNav {
+  display: flex;
+  align-items: center;
+  gap: 5px;
   padding: 10px;
   border-radius: 10px;
   margin-bottom: 3px;
@@ -42,12 +45,15 @@
 }
 
 .itemNavSelecionado {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: linear-gradient(45deg, #bb91fa, #367ce5);
   padding: 10px;
   border-radius: 10px;
   margin-bottom: 3px;
   width: 100%;
   text-align: left;
-  background-color: #2a59d1;
   color: #fff;
 }
 
@@ -75,6 +81,33 @@
   color: #fff;
   cursor: pointer;
   transition: background 0.3s ease;
+}
+
+.divPesquisa {
+  position: relative;
+}
+
+.divPesquisa input {
+  width: 100%;
+  padding: 10px 10px 10px 40px;
+  border-radius: 50px;
+  border: none;
+  outline: none;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-size: 16px;
+}
+
+.divPesquisa input::placeholder {
+  color: #fff;
+}
+
+.iconePesquisa {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
 }
 
 .divTarefa {

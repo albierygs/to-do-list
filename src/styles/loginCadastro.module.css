@@ -67,9 +67,11 @@
 }
 
 .erro {
-  color: rgb(255, 0, 0);
+  color: rgb(53, 255, 242);
+  display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 5px;
+  font-size: 16px;
 }
 
 .divErroPopup {
@@ -99,7 +101,7 @@
 }
 
 .footer a {
-  color: #007BFF;
+  color: rgb(53, 255, 242);
 }
 
 .containerSenha {
@@ -115,6 +117,10 @@
   background: rgba(255, 255, 255, 0.2);
   color: #fff;
   font-size: 16px;
+}
+
+.inputSenha::placeholder {
+  color: #fff;
 }
 
 .iconeSenha {

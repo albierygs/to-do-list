@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { isSameDay, isPast, isFuture, format } from 'date-fns'
+import { isToday, isPast, isFuture } from 'date-fns'
 import tasksService from '../services/tasks'
 import style from '../styles/principal.module.css'
 import Profile from "../components/Principal/Profile"
@@ -32,22 +32,25 @@ const Principal = ({ user }) => {
 	}, [])
 
 	const filtrarTarefas = () => {
-		const hoje = format(new Date(), 'dd/MM/yyyy')
-
-		tarefas.map(t => console.log(format(t.date, 'dd/MM/yyyy'), hoje))
 
 		if (selecionadoNav === 'Hoje') {
-			return tarefas.filter(tarefa => format(tarefa.date, 'dd/MM/yyyy') === hoje)
+			return tarefas
+				.filter(tarefa => isToday(tarefa.date))
 		} else if (selecionadoNav === 'Em breve') {
-			return tarefas.filter(tarefa =>  isFuture(tarefa.date))
+			return tarefas
+				.filter(tarefa =>  isFuture(tarefa.date))
 		} else if (selecionadoNav === 'Importantes') {
-			return tarefas.filter(tarefa => tarefa.important)
+			return tarefas
+				.filter(tarefa => tarefa.important)
 		} else if (selecionadoNav === 'Concluídas') {
-			return tarefas.filter(tarefa => tarefa.done)
+			return tarefas
+				.filter(tarefa => tarefa.done)
 		} else if (selecionadoNav === 'Atrasadas') {
-			return tarefas.filter(tarefa => isPast(tarefa.date) && !tarefa.done)
+			return tarefas
+				.filter(tarefa => isPast(tarefa.date) && !tarefa.done)
 		} else if (selecionadoNav === 'Pendentes') {
-			return tarefas.filter(tarefa => !tarefa.done)
+			return tarefas
+				.filter(tarefa => !tarefa.done)
 		}
 
 		return tarefas

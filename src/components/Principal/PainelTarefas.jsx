@@ -1,10 +1,14 @@
 import { Plus } from "lucide-react"
 import Tarefa from "./Tarefa"
+import PesquisaTarefa from "./PesquisaTarefa"
 import tasksService from '../../services/tasks'
 import { useNavigate } from "react-router-dom"
 import style from '../../styles/principal.module.css'
+import { useState } from "react"
 
 const PainelTarefas = ({ tarefasFiltradas, titulo, tarefas, setTarefas }) => {
+
+  const [ pesquisa, setPesquisa ] = useState('')
 
   const navigate = useNavigate()
 
@@ -55,12 +59,18 @@ const PainelTarefas = ({ tarefasFiltradas, titulo, tarefas, setTarefas }) => {
 
   return (
     <main className={style.main}>
+      <PesquisaTarefa
+        setPesquisa={setPesquisa}
+        pesquisa={pesquisa}
+      />
       <button className={style.button} onClick={() => navigate('/adicionartarefa')}>
         <Plus /> Adicionar tarefa
       </button>
       <h2 className={style.titulo}>{titulo}</h2>
       {titulo === 'Hoje' ? <p className={style.data}>{formatarData()}</p> : null}
-      {tarefasFiltradas.map(tarefa => 
+      {tarefasFiltradas
+        .filter(t => t.name.includes(pesquisa))
+        .map(tarefa => 
         <Tarefa 
           key={tarefa.id} 
           tarefa={tarefa} 

@@ -15,7 +15,7 @@ const loginUserFormSchema = z.object({
 		.toLowerCase(),
 	password: z.string()
 		.min(1, 'A senha é obrigatória')
-		.min(6, 'O tamanho mínimo da senha é 6 caracteres')
+		.min(6, 'O tamanho mínimo é 6 caracteres')
 })
 
 const Formulario = ({ onSubmit }) => {
