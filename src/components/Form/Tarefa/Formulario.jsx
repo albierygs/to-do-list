@@ -29,8 +29,7 @@ const Formulario = ({ onSubmit }) => {
 		handleSubmit, 
 		formState: { errors, isSubmitting } 
 	} = useForm({
-		resolver: zodResolver(schema),
-		mode: 'all'
+		resolver: zodResolver(schema)
 	})
 
   console.log(errors);
@@ -60,9 +59,9 @@ const Formulario = ({ onSubmit }) => {
         <button type="submit" className={style.botao} disabled={isSubmitting}>
           {isSubmitting ? 'Adicionando...' : 'Adicionar tarefa'}
         </button>
-        <p className={style.botaoCancelar} onClick={() => {navigate('/')}}>
+        <button className={style.botaoCancelar} onClick={() => {navigate('/')}}>
           Cancelar
-        </p>
+        </button>
 
     </form>
   )

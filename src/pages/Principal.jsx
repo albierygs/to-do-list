@@ -57,7 +57,7 @@ const Principal = ({ user }) => {
 	}
 	
 	return (
-		<>
+		<div className={style.container}>
 			<aside className={style.barraLateral}>
 				<Profile nomeUsuario={user.name} />
 				<nav className={style.nav}>
@@ -106,7 +106,7 @@ const Principal = ({ user }) => {
 				tarefas={tarefas}
 				setTarefas={setTarefas}
 			/>
-		</>
+		</div>
 	)
 }
 

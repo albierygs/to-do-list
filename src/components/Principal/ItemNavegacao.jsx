@@ -1,3 +1,4 @@
+import classNames from 'classnames'
 import style from '../../styles/principal.module.css'
 import { Pin, ListChecks, LayoutList, CalendarX, CalendarDays, Star, List } from 'lucide-react'
 
@@ -57,7 +58,7 @@ const ItemNavegacao = ({ titulo, selecionado, setSelecionado }) => {
     <li>
       <button 
         onClick={() => setSelecionado(titulo)}
-        className={titulo === selecionado ? style.itemNavSelecionado : style.itemNav}
+        className={classNames(style.button, titulo === selecionado ? style.itemNavSelecionado : style.itemNav)}
       >
         {icone()} {titulo}
       </button>

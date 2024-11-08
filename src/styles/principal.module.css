@@ -1,3 +1,21 @@
+.button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 20px;
+  background: linear-gradient(45deg, #bb91fa, #367ce5);
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.button:hover {
+  background: linear-gradient(45deg, #ACB6E5, #74ebd5);
+  transform: scale(1.05);
+}
+
+
+
 .barraLateral {
   width: 250px;
   height: 100vh;
@@ -140,9 +158,11 @@
 }
 
 .botaoAdicionar {
-  margin-top: auto;
+  margin-top: 20px;
   margin-bottom: 20px;
   animation: none;
+  display: flex;
+  align-items: center;
 }
 
 .botaoAdicionar:active {
@@ -182,18 +202,3 @@
   font-size: 16px;
 }
 
-button {
-  padding: 10px 15px;
-  border: none;
-  border-radius: 20px;
-  background: linear-gradient(45deg, #bb91fa, #367ce5);
-  color: #fff;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background 0.3s ease, transform 0.3s ease;
-}
-
-button:hover {
-  background: linear-gradient(45deg, #ACB6E5, #74ebd5);
-  transform: scale(1.05);
-}

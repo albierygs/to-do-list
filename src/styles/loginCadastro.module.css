@@ -15,18 +15,19 @@
 }
 
 .button {
-  background-color: #1e047b00;
+  background: linear-gradient(45deg, #bb91fa, #367ce5);
   border: none;
   padding: 15px 20px;
   border-radius: 25px;
   font-size: 16px;
-  color: #1e047b;
+  color: #fff;
   cursor: pointer;
   width: 100%;
 }
 
 .button:hover {
-  background-color: #0056b3;
+  background: linear-gradient(45deg, #bb91fab6, #367ce582);
+  scale: 1.05;
 }
 
 .button:disabled {
@@ -57,7 +58,7 @@
   text-align: center;
   color: #fff;
   width: 350px;
-  height: 420px; 
+  height: 450px; 
   flex-direction: column;
   justify-content: center;
 }
@@ -92,15 +93,21 @@
   font-size: 20px;
 }
 
-.footer {
+.divFooter {
   left: 0;
+  bottom: 0;
   position: absolute;
-  margin-top: 40px;
   width: 100%;
+  padding: 20px 0px;
+}
+
+.divFooter p {
+  width: 100%;
+  margin-bottom: 10px;
   font-size: 16px;
 }
 
-.footer a {
+.divFooter a {
   color: rgb(53, 255, 242);
 }
 

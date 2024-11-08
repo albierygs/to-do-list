@@ -27,8 +27,7 @@ const Formulario = ({ onSubmit }) => {
 		handleSubmit, 
 		formState: { errors, isSubmitting } 
 	} = useForm({
-		resolver: zodResolver(loginUserFormSchema),
-		mode: 'all'
+		resolver: zodResolver(loginUserFormSchema)
 	})
 
 

@@ -5,6 +5,7 @@ import tasksService from '../../services/tasks'
 import { useNavigate } from "react-router-dom"
 import style from '../../styles/principal.module.css'
 import { useState } from "react"
+import classNames from "classnames"
 
 const PainelTarefas = ({ tarefasFiltradas, titulo, tarefas, setTarefas }) => {
 
@@ -63,7 +64,7 @@ const PainelTarefas = ({ tarefasFiltradas, titulo, tarefas, setTarefas }) => {
         setPesquisa={setPesquisa}
         pesquisa={pesquisa}
       />
-      <button className={style.button} onClick={() => navigate('/adicionartarefa')}>
+      <button className={classNames(style.button, style.botaoAdicionar)} onClick={() => navigate('/adicionar-tarefa')}>
         <Plus /> Adicionar tarefa
       </button>
       <h2 className={style.titulo}>{titulo}</h2>

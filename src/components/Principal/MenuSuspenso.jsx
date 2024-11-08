@@ -1,3 +1,4 @@
+import classNames from 'classnames'
 import style from '../../styles/principal.module.css'
 
 const MenuSuspenso = () => {
@@ -11,10 +12,10 @@ const MenuSuspenso = () => {
   return (
     <ul className={style.menuSuspenso}>
       <li>
-        <button className={style.botaoMenuSuspenso}>Configurações</button>
+        <button className={classNames(style.botaoMenuSuspenso, style.button)}>Configurações</button>
       </li>
       <li>
-        <button className={style.botaoMenuSuspenso} onClick={sair}>Sair</button>
+        <button className={classNames(style.botaoMenuSuspenso, style.button)} onClick={sair}>Sair</button>
       </li>
     </ul>
   )
