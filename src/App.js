@@ -6,6 +6,7 @@ import Cadastro from './pages/Cadastro';
 import AdicionarTarefa from './pages/AdicionarTarefa';
 import ResetSenha from './pages/ResetSenha';
 import EsqueciSenha from './pages/EsqueciSenha';
+import NaoEncontrado from './pages/NaoEncontrado';
 
 
 const App = () => {
@@ -21,6 +22,7 @@ const App = () => {
           element={<EsqueciSenha />} 
         />
         <Route path='/redefinir-senha/:token' element={<ResetSenha />} />
+        <Route path='*' element={NaoEncontrado} />
       </Routes>
     </div>
   );
