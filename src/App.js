@@ -22,7 +22,7 @@ const App = () => {
           element={<EsqueciSenha />} 
         />
         <Route path='/redefinir-senha/:token' element={<ResetSenha />} />
-        <Route path='*' element={NaoEncontrado} />
+        <Route path='*' element={<NaoEncontrado />} />
       </Routes>
     </div>
   );
