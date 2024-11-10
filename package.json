@@ -8,6 +8,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.7.7",
+    "bson": "^6.9.0",
     "classnames": "^2.5.1",
     "date-fns": "^4.1.0",
     "date-fns-tz": "^3.2.0",
@@ -23,10 +24,10 @@
     "zod": "^3.23.8"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+    "eject": "react-app-rewired eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
@@ -49,6 +50,7 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^6.1.1"
+    "gh-pages": "^6.1.1",
+    "react-app-rewired": "^2.2.1"
   }
 }

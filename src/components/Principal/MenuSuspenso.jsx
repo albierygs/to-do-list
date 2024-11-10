@@ -1,5 +1,6 @@
 import classNames from 'classnames'
 import style from '../../styles/principal.module.css'
+import { Settings, LogOut } from 'lucide-react'
 
 const MenuSuspenso = () => {
 
@@ -12,10 +13,21 @@ const MenuSuspenso = () => {
   return (
     <ul className={style.menuSuspenso}>
       <li>
-        <button className={classNames(style.botaoMenuSuspenso, style.button)}>Configurações</button>
+        <button 
+          className={classNames(style.botaoMenuSuspenso, style.button)}
+        >
+          <Settings size={15} />
+          Configurações
+        </button>
       </li>
       <li>
-        <button className={classNames(style.botaoMenuSuspenso, style.button)} onClick={sair}>Sair</button>
+        <button 
+          className={classNames(style.botaoMenuSuspenso, style.button)} 
+          onClick={sair}
+        >
+          <LogOut size={15} />
+          Sair
+        </button>
       </li>
     </ul>
   )

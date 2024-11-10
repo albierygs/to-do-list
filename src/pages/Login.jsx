@@ -20,7 +20,10 @@ const Login = () => {
 
 	useEffect(() => {
 		document.title = 'Login'
-	}, [])
+		if (localStorage.getItem('toDoListToken')) {
+			navigate('/')
+		}
+	})
 	
 
 	/**
