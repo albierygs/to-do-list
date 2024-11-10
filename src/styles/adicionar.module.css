@@ -16,10 +16,15 @@
   margin: auto;
 }
 
+.divErro {
+  min-height: 20px;
+}
+
 .input {
   width: 100%;
   padding: 10px;
-  margin: 10px 0;
+  margin-top: 10px;
+  margin-bottom: 5px;
   border: none;
   border-radius: 5px;
   background: rgba(255, 255, 255, 0.2);
@@ -45,7 +50,7 @@
   cursor: pointer;
   transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   width: 100%;
-  margin-top: 5px;
+  margin-top: 20px;
 }
 
 .botaoCancelar {

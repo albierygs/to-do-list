@@ -102,6 +102,8 @@ const ResetSenha = () => {
   const submit = async (data) => {
     try {
       await resetSenhaService.redefinir(data, token)
+      localStorage.removeItem('toDoListToken');
+      localStorage.removeItem('tasksUser');
       setTipoModal('ok')
       setModalAberto(true)
     } catch (error) {
@@ -155,6 +157,7 @@ const ResetSenha = () => {
 
         <button 
           type="submit" 
+          style={{ marginTop: '0' }}
           className={style.botao} 
           disabled={isSubmitting}
         >
