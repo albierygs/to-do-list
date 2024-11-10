@@ -1,14 +1,15 @@
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { Eye, EyeClosed } from "lucide-react"
 import { useNavigate, useParams } from "react-router-dom"
+import { jwtDecode } from "jwt-decode"
 import MensagemErro from "../components/Form/MensagemErro"
 import ModalAviso from '../components/ModalAviso';
 import resetSenhaService from '../services/resetSenha';
-import style from '../styles/loginCadastro.module.css';
-import { jwtDecode } from "jwt-decode"
+import style from '../styles/adicionar.module.css'
+import styleInput from '../styles/loginCadastro.module.css';
 
 const schema = z
   .object({
@@ -33,6 +34,15 @@ const ResetSenha = () => {
   const [ modalAberto, setModalAberto ] = useState(false)
   const [ tipoModal, setTipoModal ] = useState('')
   
+
+  useEffect(() => {
+    document.title = 'Redefinir senha'
+    try {
+      jwtDecode(token)
+    } catch (error) {
+      navigate('/')
+    }
+  })
 
   const { 
     register, 
@@ -101,48 +111,53 @@ const ResetSenha = () => {
   }
 
   return (
-    <div>
-      <h2>Redefina a sua senha</h2>
+    <div className={style.container}>
+      <h2 className={style.titulo}>Redefina a sua senha</h2>
       <div>
       <form onSubmit={handleSubmit(submit)}>
 
-        <div className={style.containerCampos}>
+        <div className={styleInput.containerCampos}>
           <label htmlFor="newPassword">Nova senha</label>
-          <div className={style.containerSenha}>
+          <div className={styleInput.containerSenha}>
             <input 
-              className={style.inputSenha}
+              className={styleInput.inputSenha}
               type={showPassword ? 'text' : 'password'} 
               {...register('newPassword')}
             />
-            <span className={style.iconeSenha} >{showPassword 
+            <span className={styleInput.iconeSenha} >{showPassword 
               ? <Eye  onClick={() => mudarVisibilidadeSenha('pass')}/>
               : <EyeClosed onClick={() => mudarVisibilidadeSenha('pass')}/>}
             </span>
           </div>
-          <div className={style.divErro}>
+          <div className={styleInput.divErro}>
             {errors.newPassword && <MensagemErro mensagem={errors.newPassword.message} />}
           </div>
         </div>
 
-        <div className={style.containerCampos}>
+        <div className={styleInput.containerCampos}>
           <label htmlFor="confirmPassword">Confirme nova senha</label>
-          <div className={style.containerSenha}>
+          <div className={styleInput.containerSenha}>
             <input 
-              className={style.inputSenha}
+              style={{ width: '270px' }}
+              className={styleInput.inputSenha}
               type={showConfirmPassword ? 'text' : 'password'} 
               {...register('confirmNewPassword')}
             />
-            <span className={style.iconeSenha} >{showConfirmPassword 
+            <span className={styleInput.iconeSenha} >{showConfirmPassword 
               ? <Eye  onClick={() => mudarVisibilidadeSenha('confirm')}/>
               : <EyeClosed onClick={() => mudarVisibilidadeSenha('confirm')}/>}
             </span>
           </div>
-          <div className={style.divErro}>
+          <div className={styleInput.divErro}>
             {errors.confirmNewPassword && <MensagemErro mensagem={errors.confirmNewPassword.message} />}
           </div>
         </div>
 
-        <button type="submit" className={style.button} disabled={isSubmitting}>
+        <button 
+          type="submit" 
+          className={style.botao} 
+          disabled={isSubmitting}
+        >
           {isSubmitting ? 'Salvando...' : 'Salvar'}
         </button>
 

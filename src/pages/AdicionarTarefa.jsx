@@ -2,10 +2,18 @@ import Form from "../components/Form/Tarefa/Formulario"
 import style from '../styles/adicionar.module.css'
 import tasksService from '../services/tasks'
 import { useNavigate } from "react-router-dom"
+import { useEffect } from "react"
 
 const AdicionarTarefa = () => {
 
   const navigate = useNavigate()
+
+  useEffect(() => {
+    document.title = 'Adicionar tarefa'
+    if (!localStorage.getItem('toDoListToken')) {
+      navigate('/')
+    }
+  })
 
   const submit = async dados => {
     try {

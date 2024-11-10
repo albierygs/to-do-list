@@ -13,16 +13,34 @@ const App = () => {
   return (
     <div className="App">
       <Routes>
-        <Route index element={<Inicio />}/>
-        <Route path='/login' element={<Login />}/>
-        <Route path='/cadastro' element={<Cadastro />}/>
-        <Route path='/adicionar-tarefa' element={<AdicionarTarefa />}/>
+        <Route 
+          index 
+          element={<Inicio />}
+        />
+        <Route 
+          path='/login' 
+          element={<Login />}
+        />
+        <Route 
+          path='/cadastro' 
+          element={<Cadastro />}
+        />
+        <Route 
+          path='/adicionar-tarefa' 
+          element={<AdicionarTarefa />}
+        />
         <Route 
           path='/esqueci-senha' 
           element={<EsqueciSenha />} 
         />
-        <Route path='/redefinir-senha/:token' element={<ResetSenha />} />
-        <Route path='*' element={<NaoEncontrado />} />
+        <Route 
+          path='/redefinir-senha/:token' 
+          element={<ResetSenha />} 
+        />
+        <Route 
+          path='*' 
+          element={<NaoEncontrado />} 
+        />
       </Routes>
     </div>
   );

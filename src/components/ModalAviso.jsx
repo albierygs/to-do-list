@@ -1,5 +1,5 @@
 import style from '../styles/modalAviso.module.css';
-
+import ReactDOM from 'react-dom'
 const ModalAviso = ({ 
   mudarEstado, 
   titulo, 
@@ -10,7 +10,7 @@ const ModalAviso = ({
 
   metodoBotaoPrincipal = metodoBotaoPrincipal || mudarEstado
 
-  return (
+  return ReactDOM.createPortal(
     <div className={style.modalOverlay} onClick={mudarEstado}>
       <div className={style.modalContent} onClick={(e) => e.stopPropagation()}>
         <h2>{titulo}</h2>
@@ -33,7 +33,8 @@ const ModalAviso = ({
           </button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   )
 }
 

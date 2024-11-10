@@ -3,8 +3,9 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import MensagemErro from '../components/Form/MensagemErro';
 import resetSenhaService from '../services/resetSenha';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ModalAviso from "../components/ModalAviso";
+import style from '../styles/adicionar.module.css';
 
 
 const schema = z.object({
@@ -19,6 +20,10 @@ const EsqueciSenha = () => {
   const [ modalAberto, setModalAberto ] = useState(false)
   const [ tituloModal, setTituloModal ] = useState('')
   const [ mensagemModal, setMensagemModal ] = useState('')
+
+  useEffect(() => {
+    document.title = 'Solicitar mudança de senha'
+  }, [])
 
   const { 
     register, 
@@ -43,18 +48,22 @@ const EsqueciSenha = () => {
   }
 
   return (
-    <div>
-      <h2>Redefinir senha</h2>
-      <p>Informe o endereço de e-mail da sua conta para que seja enviado um link para redefinição de senha.</p>
+    <div className={style.container}>
+      <h2 className={style.titulo}>Redefinir senha</h2>
+      <p className={style.paragrafo}>Informe o endereço de e-mail da sua conta para que seja enviado um link para redefinição de senha.</p>
       <form onSubmit={handleSubmit(submit)}>
         <input 
+          className={style.input}
           autoFocus
           type="email" 
           {...register('email')} 
           placeholder="usuario@example.com"
         />
         {errors.email && <MensagemErro mensagem={errors.email.message} />}
-        <button type="submit">
+        <button 
+          type="submit"
+          className={style.botao}
+        >
           {isSubmitting ? 'Enviando...' : 'Enviar link'}
         </button>
       </form>
