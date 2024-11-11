@@ -5,28 +5,26 @@ import style from '../styles/principal.module.css'
 import Profile from "../components/Principal/Profile"
 import ItemNavegacao from "../components/Principal/ItemNavegacao"
 import PainelTarefas from "../components/Principal/PainelTarefas"
+import Carregando from "./Carregando"
 
 const Principal = ({ user }) => {
 	
 	const [ tarefas, setTarefas ] = useState([])
 	const [ selecionadoNav, setSelecionadoNav ] = useState('Hoje')
+  const [ loading, setLoading ] = useState(true);
+
 	
 	useEffect(() => {
 		const carregarTarefasUsuario = async () => {
-			const tasksStorage = localStorage.getItem('tasksUser')
-			
-			if (tasksStorage) {
-				setTarefas(JSON.parse(tasksStorage))
-			} else {
-				try {
-					const token = localStorage.getItem('toDoListToken')
-					const tarefas = await tasksService.carregarTarefasUsuario(token)
-					setTarefas(tarefas)
-					localStorage.setItem('tasksUser', JSON.stringify(tarefas))
-				} catch (error) {
-					console.error('Erro ao buscar tarefas', error);                    
-				}
+			try {
+				localStorage.removeItem('tasksUser')
+				const tarefas = await tasksService.carregarTarefasUsuario()
+				setTarefas(tarefas)
+				localStorage.setItem('tasksUser', JSON.stringify(tarefas))
+			} catch (error) {
+				console.error('Erro ao buscar tarefas', error);                    
 			}
+			setLoading(false)
 		}
 		carregarTarefasUsuario()
 	}, [])
@@ -55,6 +53,8 @@ const Principal = ({ user }) => {
 
 		return tarefas
 	}
+
+	if (loading) return <Carregando />;
 	
 	return (
 		<div className={style.container}>
