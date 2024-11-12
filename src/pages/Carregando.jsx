@@ -4,7 +4,6 @@ const Carregando = () => {
   return (
     <div className={style.container}>
       <div className={style.loader}></div>
-      <p>Carregando</p>
     </div>
   )
 }

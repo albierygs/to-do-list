@@ -34,9 +34,11 @@ const ResetSenha = () => {
   const [ modalAberto, setModalAberto ] = useState(false)
   const [ tipoModal, setTipoModal ] = useState('')
   
-
   useEffect(() => {
     document.title = 'Redefinir senha'
+  }, [])
+
+  useEffect(() => {
     try {
       jwtDecode(token)
     } catch (error) {
