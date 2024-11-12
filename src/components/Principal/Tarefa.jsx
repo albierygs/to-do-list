@@ -13,6 +13,7 @@ const Tarefa = ({ tarefa, excluirTarefa, mudarImportancia, mudarConclusao }) => 
   return (
     <div className={style.divTarefa}>
       <p>{tarefa.name}</p>
+      <p>{new Date(tarefa.date).toLocaleDateString('pt-Br')}</p>
       <div title={tarefa.important ? 'Marcar como não importante' : 'Marcar como importante'}>
         <Star 
           fill={tarefa.important ? 'gold' : 'none'}  

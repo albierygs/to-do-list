@@ -192,7 +192,8 @@
 }
 
 .main {
-  margin-left: 300px;
+  margin-left: 150px;
+  width: 100%;
   padding: 20px;
   color: #fff;
   display: flex;
