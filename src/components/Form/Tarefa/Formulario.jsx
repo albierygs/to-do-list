@@ -3,7 +3,6 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import style from '../../../styles/adicionar.module.css'
 import MensagemErro from '../MensagemErro'
-import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toZonedTime } from 'date-fns-tz'
 
@@ -24,7 +23,7 @@ const schema = z.object({
 })
 
 const Formulario = ({ onSubmit }) => {
-  const [dataAtual] = useState(() => new Date().toISOString().split('T')[0])
+
   const navigate = useNavigate()
 
   const { 
@@ -62,7 +61,6 @@ const Formulario = ({ onSubmit }) => {
         <label htmlFor="task-date">Data</label>
         <input 
           type="date" 
-          defaultValue={dataAtual}
           className={style.input}
           {...register('date')}
         />
