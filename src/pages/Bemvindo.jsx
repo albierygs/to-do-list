@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { Link } from "react-router-dom"
-import style from '../styles/bemVindo.module.css'
+// import style from '../styles/bemVindo.module.css'
 
 const BemVindo = () => {
 
