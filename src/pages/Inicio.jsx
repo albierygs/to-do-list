@@ -7,7 +7,7 @@ import Carregando from './Carregando';
 const Inicio = () => {
   
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [ loading, setLoading ] = useState(true);
 
   useEffect(() => {
     const pegarDadosUsuario = async () => {

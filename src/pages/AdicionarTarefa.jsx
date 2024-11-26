@@ -10,6 +10,9 @@ const AdicionarTarefa = () => {
 
   useEffect(() => {
     document.title = 'Adicionar tarefa'
+  }, [])
+
+  useEffect(() => {
     if (!localStorage.getItem('toDoListToken')) {
       navigate('/')
     }

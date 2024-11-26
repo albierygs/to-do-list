@@ -4,6 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import style from '../../../styles/adicionar.module.css'
 import { useNavigate } from 'react-router-dom'
 import PesquisaLocal from '../../PesquisaLocal'
+import MensagemErro from '../MensagemErro'
 
 
 const schema = z.object({
@@ -71,16 +72,23 @@ const Formulario = ({ onSubmit }) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <label>Título</label>
         <input 
+          autoFocus
           type="text" 
           {...register('name')}
           className={style.input}
         />
+        <div className={style.divErro}>
+          {errors.name && <MensagemErro mensagem={errors.name.message} />}
+        </div>
         
         <label>Descrição (opcional)</label>
         <textarea 
           className={style.input}
           {...register('description')}
         ></textarea>
+        <div className={style.divErro}>
+          {errors.description && <MensagemErro mensagem={errors.description.message} />}
+        </div>
         
         <label>Data</label>
         <input 

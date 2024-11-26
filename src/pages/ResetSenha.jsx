@@ -34,9 +34,11 @@ const ResetSenha = () => {
   const [ modalAberto, setModalAberto ] = useState(false)
   const [ tipoModal, setTipoModal ] = useState('')
   
-
   useEffect(() => {
     document.title = 'Redefinir senha'
+  }, [])
+
+  useEffect(() => {
     try {
       jwtDecode(token)
     } catch (error) {
@@ -102,6 +104,8 @@ const ResetSenha = () => {
   const submit = async (data) => {
     try {
       await resetSenhaService.redefinir(data, token)
+      localStorage.removeItem('toDoListToken');
+      localStorage.removeItem('tasksUser');
       setTipoModal('ok')
       setModalAberto(true)
     } catch (error) {
@@ -155,6 +159,7 @@ const ResetSenha = () => {
 
         <button 
           type="submit" 
+          style={{ marginTop: '0' }}
           className={style.botao} 
           disabled={isSubmitting}
         >

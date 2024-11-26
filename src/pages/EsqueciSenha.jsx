@@ -59,7 +59,9 @@ const EsqueciSenha = () => {
           {...register('email')} 
           placeholder="usuario@example.com"
         />
-        {errors.email && <MensagemErro mensagem={errors.email.message} />}
+        <div className={style.divErro}>
+          {errors.email && <MensagemErro mensagem={errors.email.message} />}
+        </div>
         <button 
           type="submit"
           className={style.botao}

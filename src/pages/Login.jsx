@@ -17,10 +17,15 @@ const Login = () => {
 
 	const [ credenciaisError, setCredenciaisError ] = useState(null)
 
-
 	useEffect(() => {
 		document.title = 'Login'
 	}, [])
+
+	useEffect(() => {
+		if (localStorage.getItem('toDoListToken')) {
+			navigate('/')
+		}
+	})
 	
 
 	/**

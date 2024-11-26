@@ -7,6 +7,7 @@ import AdicionarTarefa from './pages/AdicionarTarefa';
 import ResetSenha from './pages/ResetSenha';
 import EsqueciSenha from './pages/EsqueciSenha';
 import NaoEncontrado from './pages/NaoEncontrado';
+import EditarTarefa from './pages/EditarTarefa';
 
 
 const App = () => {
@@ -28,6 +29,10 @@ const App = () => {
         <Route 
           path='/adicionar-tarefa' 
           element={<AdicionarTarefa />}
+        />
+        <Route 
+          path='/editar-tarefa/:id'
+          element={<EditarTarefa />}
         />
         <Route 
           path='/esqueci-senha' 
