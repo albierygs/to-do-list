@@ -1,61 +1,102 @@
 import { z } from 'zod'
-import { useForm } from 'react-hook-form'
+import { useForm, FormProvider } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import style from '../../../styles/adicionar.module.css'
-import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import PesquisaLocal from '../../PesquisaLocal'
 
 
 const schema = z.object({
 	name: z.string()
 		.min(1, 'O título é obrigatório'),
-	description: z.string(),
-  date: z.preprocess((value) => {
-    if (typeof value === 'string' || value instanceof Date) {
-      const date = new Date(value)
-      date.setUTCHours(0, 0, 0, 0);
-      return date
+	description: z.string().default(''),
+  dateTime: z.preprocess((value) => {
+    console.log(value);
+    
+    if (typeof value === 'object' && value !== null) {
+      const { date, time } = value;
+
+      if (typeof date === 'string') {
+        const [year, month, day] = date.split('-').map(Number);
+
+        if (typeof time === 'string') {
+          const [hours, minutes] = time.split(':').map(Number);
+          const combinedDate = new Date(year, month - 1, day, hours, minutes);
+          return combinedDate;
+        } else {
+          const combinedDate = new Date(year, month - 1, day);
+          return combinedDate;
+        }
+      }
     }
-    return value
-  }, z.date())
+    return null;
+  }, z.date().nullable()),
+  location: z.object({
+    name: z.string().nullable().default(''),
+    type: z.literal('Point').default('Point'),
+    coordinates: z.array(z.number()).length(2).nullable().default(null)
+  })
 })
 
 const Formulario = ({ onSubmit }) => {
-  const [dataAtual] = useState(() => new Date().toISOString().split('T')[0])
   const navigate = useNavigate()
+
+  const formTarefa = useForm({
+		resolver: zodResolver(schema)
+	})
 
   const { 
 		register, 
 		handleSubmit, 
-		formState: { errors, isSubmitting } 
-	} = useForm({
-		resolver: zodResolver(schema)
-	})
+		formState: { errors, isSubmitting },
+    setValue,
+    getValues
+	} = formTarefa
+
+  const handleDateTimeChange = (field, value) => {
+    console.log(field, value);
+
+    const currentDateTime = getValues('dateTime') || { date: null, time: null }
+    
+    const updatedDateTime = { ...currentDateTime, [field]: value || null }
+
+    setValue('dateTime', updatedDateTime);
+  };
 
   console.log(errors);
+  
 
   return (
-    <form id="task-form" onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="task-title">Título</label>
+    <FormProvider {...formTarefa}>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <label>Título</label>
         <input 
           type="text" 
           {...register('name')}
           className={style.input}
         />
         
-        <label htmlFor="task-desc">Descrição (opcional)</label>
+        <label>Descrição (opcional)</label>
         <textarea 
           className={style.input}
           {...register('description')}
         ></textarea>
         
-        <label htmlFor="task-date">Data</label>
+        <label>Data</label>
         <input 
           type="date" 
-          defaultValue={dataAtual}
           className={style.input}
-          {...register('date')}
+          onChange={(e) => handleDateTimeChange('date', e.target.value)}
         />
+
+        <label>Hora</label>
+        <input 
+          type="time" 
+          className={style.input}
+          onChange={(e) => handleDateTimeChange('time', e.target.value)}
+        />
+
+        <PesquisaLocal />
         <button type="submit" className={style.botao} disabled={isSubmitting}>
           {isSubmitting ? 'Adicionando...' : 'Adicionar tarefa'}
         </button>
@@ -63,7 +104,8 @@ const Formulario = ({ onSubmit }) => {
           Cancelar
         </button>
 
-    </form>
+      </form>
+    </FormProvider>
   )
 }
 
