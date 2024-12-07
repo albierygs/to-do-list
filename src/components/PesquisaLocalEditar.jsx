@@ -19,10 +19,14 @@ const customPinIcon = new L.Icon({
 });
 
 
-const PesquisaLocal = () => {
-  const [search, setSearch] = useState("");
+const PesquisaLocalEditar = ({ location }) => {
+  const [search, setSearch] = useState(location.name);
   const [suggestions, setSuggestions] = useState([]);
-  const [selectedLocation, setSelectedLocation] = useState(null);
+  const [selectedLocation, setSelectedLocation] = useState({
+    lat: parseFloat(location.coordinates[0]),
+    lon: parseFloat(location.coordinates[1]),
+    displayName: location.name
+  });
   const [mapVisible, setMapVisible] = useState(false);
 
   const suggestionsRef = useRef(null);
@@ -109,7 +113,12 @@ const PesquisaLocal = () => {
           {...register('location.name')}
           onChange={handleSearchChange}
         />
-        <button onClick={() => setMapVisible(!mapVisible)}>
+        <button 
+          onClick={(e) => {
+            e.preventDefault()
+            setMapVisible(!mapVisible)
+          }}
+        >
           <MapPinned />
         </button>
         {suggestions.length > 0 && (
@@ -147,4 +156,4 @@ const PesquisaLocal = () => {
   );
 };
 
-export default PesquisaLocal
+export default PesquisaLocalEditar

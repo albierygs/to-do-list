@@ -33,10 +33,10 @@ const Principal = ({ user }) => {
 
 		if (selecionadoNav === 'Hoje') {
 			return tarefas
-				.filter(tarefa => isToday(tarefa.date))
+				.filter(tarefa => isToday(tarefa.dateTime))
 		} else if (selecionadoNav === 'Em breve') {
 			return tarefas
-				.filter(tarefa =>  isFuture(tarefa.date))
+				.filter(tarefa =>  isFuture(tarefa.dateTime))
 		} else if (selecionadoNav === 'Importantes') {
 			return tarefas
 				.filter(tarefa => tarefa.important)
@@ -45,7 +45,7 @@ const Principal = ({ user }) => {
 				.filter(tarefa => tarefa.done)
 		} else if (selecionadoNav === 'Atrasadas') {
 			return tarefas
-				.filter(tarefa => isPast(tarefa.date) && !tarefa.done)
+				.filter(tarefa => isPast(tarefa.dateTime) && !tarefa.done)
 		} else if (selecionadoNav === 'Pendentes') {
 			return tarefas
 				.filter(tarefa => !tarefa.done)

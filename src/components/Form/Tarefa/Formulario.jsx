@@ -63,8 +63,6 @@ const Formulario = ({ onSubmit }) => {
 
     setValue('dateTime', updatedDateTime);
   };
-
-  console.log(errors);
   
 
   return (
