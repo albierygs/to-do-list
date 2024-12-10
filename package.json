@@ -14,11 +14,12 @@
     "date-fns": "^4.1.0",
     "date-fns-tz": "^3.2.0",
     "jwt-decode": "^4.0.0",
+    "leaflet": "^1.9.4",
     "lucide-react": "^0.453.0",
-    "prop-types": "^15.8.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.53.0",
+    "react-leaflet": "^4.2.1",
     "react-router-dom": "^6.26.2",
     "react-scripts": "^5.0.1",
     "svgo": "^3.3.2",
@@ -27,9 +28,15 @@
     "zod": "^3.23.8"
   },
   "scripts": {
+<<<<<<< HEAD
     "start": "react-scripts --openssl-legacy-provider start",
     "build": "react-scripts --openssl-legacy-provider build",
     "test": "react-scripts --openssl-legacy-provider test",
+=======
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+>>>>>>> 7ebca4188d62a69a6372976d84f26529198d8d86
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"

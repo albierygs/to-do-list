@@ -1,44 +1,74 @@
 import { z } from 'zod'
-import { useForm } from 'react-hook-form'
+import { useForm, FormProvider } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import style from '../../../styles/adicionar.module.css'
-import MensagemErro from '../MensagemErro'
 import { useNavigate } from 'react-router-dom'
-import { toZonedTime } from 'date-fns-tz'
+import PesquisaLocal from '../../PesquisaLocal'
+import MensagemErro from '../MensagemErro'
 
 
 const schema = z.object({
 	name: z.string()
 		.min(1, 'O título é obrigatório'),
-	description: z.string(),
-  date: z
-    .string()
-    .refine((date) => {
-      const parsedDate = new Date(date);
-      return !isNaN(parsedDate.getTime());
-    }, {
-      message: 'Por favor, insira uma data válida',
-    })
-    .transform((date) => toZonedTime(new Date(date), 'Europe/London'))
+	description: z.string().default(''),
+  dateTime: z.preprocess((value) => {
+    console.log(value);
+    
+    if (typeof value === 'object' && value !== null) {
+      const { date, time } = value;
+
+      if (typeof date === 'string') {
+        const [year, month, day] = date.split('-').map(Number);
+
+        if (typeof time === 'string') {
+          const [hours, minutes] = time.split(':').map(Number);
+          const combinedDate = new Date(year, month - 1, day, hours, minutes);
+          return combinedDate;
+        } else {
+          const combinedDate = new Date(year, month - 1, day);
+          return combinedDate;
+        }
+      }
+    }
+    return null;
+  }, z.date().nullable()),
+  location: z.object({
+    name: z.string().nullable().default(''),
+    type: z.literal('Point').default('Point'),
+    coordinates: z.array(z.number()).length(2).nullable().default(null)
+  })
 })
 
 const Formulario = ({ onSubmit }) => {
-
   const navigate = useNavigate()
+
+  const formTarefa = useForm({
+		resolver: zodResolver(schema)
+	})
 
   const { 
 		register, 
 		handleSubmit, 
-		formState: { errors, isSubmitting } 
-	} = useForm({
-		resolver: zodResolver(schema)
-	})
+		formState: { errors, isSubmitting },
+    setValue,
+    getValues
+	} = formTarefa
 
-  console.log(errors);
+  const handleDateTimeChange = (field, value) => {
+    console.log(field, value);
+
+    const currentDateTime = getValues('dateTime') || { date: null, time: null }
+    
+    const updatedDateTime = { ...currentDateTime, [field]: value || null }
+
+    setValue('dateTime', updatedDateTime);
+  };
+  
 
   return (
-    <form id="task-form" onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="task-title">Título</label>
+    <FormProvider {...formTarefa}>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <label>Título</label>
         <input 
           autoFocus
           type="text" 
@@ -49,7 +79,7 @@ const Formulario = ({ onSubmit }) => {
           {errors.name && <MensagemErro mensagem={errors.name.message} />}
         </div>
         
-        <label htmlFor="task-desc">Descrição (opcional)</label>
+        <label>Descrição (opcional)</label>
         <textarea 
           className={style.input}
           {...register('description')}
@@ -58,16 +88,21 @@ const Formulario = ({ onSubmit }) => {
           {errors.description && <MensagemErro mensagem={errors.description.message} />}
         </div>
         
-        <label htmlFor="task-date">Data</label>
+        <label>Data</label>
         <input 
           type="date" 
           className={style.input}
-          {...register('date')}
+          onChange={(e) => handleDateTimeChange('date', e.target.value)}
         />
-        <div className={style.divErro}>
-          {errors.date && <MensagemErro mensagem={errors.date.message} />}
-        </div>
 
+        <label>Hora</label>
+        <input 
+          type="time" 
+          className={style.input}
+          onChange={(e) => handleDateTimeChange('time', e.target.value)}
+        />
+
+        <PesquisaLocal />
         <button type="submit" className={style.botao} disabled={isSubmitting}>
           {isSubmitting ? 'Adicionando...' : 'Adicionar tarefa'}
         </button>
@@ -75,7 +110,8 @@ const Formulario = ({ onSubmit }) => {
           Cancelar
         </button>
 
-    </form>
+      </form>
+    </FormProvider>
   )
 }
 

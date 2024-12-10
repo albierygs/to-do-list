@@ -1,0 +1,49 @@
+/* .container {
+  padding: 20px;
+  max-width: 600px;
+  margin: auto;
+} */
+
+.searchContainer {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.searchContainer button {
+  position: absolute;
+  top: 36px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.suggestions {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  border: 1px solid #ccc;
+  background-color: white;
+  z-index: 1000;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.suggestions li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.suggestions li:hover {
+  background-color: #f0f0f0;
+}
+
+.mapContainer {
+  margin-top: 20px;
+}
