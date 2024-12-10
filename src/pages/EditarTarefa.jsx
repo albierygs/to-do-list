@@ -1,6 +1,5 @@
 import { useEffect } from "react"
 import { useNavigate, useParams } from "react-router-dom"
-import { ObjectId } from 'bson'
 import { z } from "zod";
 import { toZonedTime } from 'date-fns-tz'
 import { useForm } from "react-hook-form";
@@ -26,6 +25,15 @@ const schema = z.object({
     .transform((date) => toZonedTime(new Date(date), 'Europe/London'))
 })
 
+function isValidMongoId(id) {
+  if (typeof id !== 'string' || id.length !== 24) {
+    return false;
+  }
+
+  const hexRegex = /^[0-9a-fA-F]{24}$/;
+  return hexRegex.test(id);
+}
+
 const EditarTarefa = () => {
   
   const navigate = useNavigate()
@@ -39,7 +47,7 @@ const EditarTarefa = () => {
     : null
   
   useEffect(() => {
-    if (!(localStorage.getItem('toDoListToken') && ObjectId.isValid(id))) {
+    if (!(localStorage.getItem('toDoListToken') && isValidMongoId(id))) {
       navigate('/')
     }
   })

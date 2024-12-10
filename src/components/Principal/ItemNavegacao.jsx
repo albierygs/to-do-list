@@ -1,3 +1,4 @@
+import React from 'react'
 import classNames from 'classnames'
 import style from '../../styles/principal.module.css'
 import { Pin, ListChecks, LayoutList, CalendarX, CalendarDays, Star, List } from 'lucide-react'

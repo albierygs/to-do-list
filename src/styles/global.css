@@ -10,7 +10,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #021148, #4306ec, #6b39a9, #850091);
+  background: linear-gradient(135deg, #aed0db,#10303c, #1b4b52,#28c95e);
+
   background-size: 400% 400%;
   animation: gradientAnimation 40s ease infinite;
   overflow: hidden;

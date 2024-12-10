@@ -1,32 +1,37 @@
-import { useEffect } from "react"
-import { Link } from "react-router-dom"
-// import style from '../styles/bemVindo.module.css'
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import styles from "../styles/bemVindo.module.css";
+//import logo from "../assets/logo.png";
+//import animation from "../assets/animação.gif"; 
 
-const BemVindo = () => {
-
+function BemVindo() {
   useEffect(() => {
-    document.title = 'Bem vindo ao ToDo list'
-  }, [])
-
-  // useEffect(() => {
-  //   document.body.style.background = 'none';
-  //   document.body.style.animation = 'none';
-
-  //   return () => {
-  //     document.body.style.background =
-  //       'linear-gradient(135deg, #021148, #4306ec, #6b39a9, #850091)';
-  //     document.body.style.backgroundSize = '400% 400%';
-  //     document.body.style.animation = 'gradientAnimation 40s ease infinite';
-  //   };
-  // }, []);
+    document.title = "Bem-vindo ao ToDo list";
+    document.body.classList.add(styles.bodyBemVindo);
+    return () => {
+      document.body.classList.remove(styles.bodyBemVindo);
+    };
+  }, []);
 
   return (
-    <div>
-      <h1>Bem vindo</h1>
-      <Link to={'/login'} style={{ color: '#35fff2', marginRight: '10px' }}>login</Link>
-      <Link to={'/cadastro'} style={{ color: '#35fff2' }}>Cadastro</Link>
+    <div className={styles.container}>
+
+      <h1 className={styles.title}>Bem-vindo</h1>
+      
+      <Link to="/login" className={styles.link}>
+        Login
+        
+      </Link>
+      
+      <Link to="/cadastro" className={styles.link}>
+        Cadastro
+      </Link>
     </div>
-  )
+  );
 }
 
-export default BemVindo
+export default BemVindo;
+
+
+
+

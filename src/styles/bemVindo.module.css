@@ -1,0 +1,81 @@
+
+.container {
+  text-align: center;
+  padding: 20px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  position: relative;
+  z-index: 1;
+}
+
+.title {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  animation: fadeIn 2s ease-in-out;
+}
+
+.link {
+  color: #35fff2;
+  margin-right: 10px;
+  font-size: 1.2rem;
+  text-decoration: none;
+  backdrop-filter: blur(10px);
+  padding: 12px 25px;
+  border-radius: 5px;
+  border: 2px solid #35fff2;
+  transition: all 0.3s ease;
+}
+
+.link:last-child {
+  margin-right: 0;
+}
+
+.link:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.bodyBemVindo {
+  background: linear-gradient(135deg, #aed0db, #10303c, #1b4b52, #28c95e);
+  background-size: 400% 400%;
+  animation: gradientAnimation 40s ease infinite;
+  height: 100%;
+  margin: 0;
+}
+
+.logo {
+  max-width: 100px;
+  margin-bottom: 20px;
+  animation: fadeIn 2s ease-in-out;
+}
+
+.animation {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

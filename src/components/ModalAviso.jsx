@@ -1,3 +1,4 @@
+import React from 'react'
 import style from '../styles/modalAviso.module.css';
 import ReactDOM from 'react-dom'
 const ModalAviso = ({ 

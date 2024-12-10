@@ -1,3 +1,4 @@
+import React from 'react'
 import { SquarePen, Trash2, Star, CircleCheckBig } from 'lucide-react'
 import style from '../../styles/principal.module.css'
 import { useNavigate } from 'react-router-dom'
