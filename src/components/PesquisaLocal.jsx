@@ -109,7 +109,10 @@ const PesquisaLocal = () => {
           {...register('location.name')}
           onChange={handleSearchChange}
         />
-        <button onClick={() => setMapVisible(!mapVisible)}>
+        <button onClick={(e) => {
+          e.preventDefault()
+          setMapVisible(!mapVisible)
+        }}>
           <MapPinned />
         </button>
         {suggestions.length > 0 && (
