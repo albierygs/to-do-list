@@ -30,10 +30,6 @@ function isValidMongoId(id) {
   return hexRegex.test(id);
 }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 7ebca4188d62a69a6372976d84f26529198d8d86
 const EditarTarefa = () => {
   
   const navigate = useNavigate()
