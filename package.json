@@ -28,15 +28,9 @@
     "zod": "^3.23.8"
   },
   "scripts": {
-<<<<<<< HEAD
-    "start": "react-scripts --openssl-legacy-provider start",
-    "build": "react-scripts --openssl-legacy-provider build",
-    "test": "react-scripts --openssl-legacy-provider test",
-=======
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
->>>>>>> 7ebca4188d62a69a6372976d84f26529198d8d86
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
